@@ -4,9 +4,7 @@ import { config } from "./src/Config";
 
 export default {
     schema: "./src/Database/schema.ts",
-    dbCredentials: {
-        uri: config.database_URL as string,
-    },
     driver: "mysql2",
+    dbCredentials:{uri: config.database_URL as string},
     
 } satisfies Config

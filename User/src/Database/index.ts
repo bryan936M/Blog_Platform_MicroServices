@@ -5,7 +5,7 @@ import { config } from "../Config";
 
 // create the connection
 const connection = connect({
-  url: config.database_URL,
+  url: config.database_URL!,
 });
 
 const db = drizzle(connection);

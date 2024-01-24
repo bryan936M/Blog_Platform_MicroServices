@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "db:push": "drizzle-kit push:mysql --config=drizzle.config.ts"
+    "dev": "nodemon src/index.ts",
+    "db:push": "drizzle-kit push:mysql --config=./drizzle.config.ts"
   },
   "author": "",
   "license": "ISC",
