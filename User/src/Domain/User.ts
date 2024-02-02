@@ -1,7 +1,7 @@
 interface IUserDependencies {
   makeId: () => string;
-  checkEmail: (email: string) => void;
-  checkPassword: (password: string) => void;
+  validateEmail: (email: string) => void;
+  validatePassword: (password: string) => void;
 }
 
 export interface IUserOptions {
@@ -14,11 +14,15 @@ export interface IUserOptions {
   createdAt: Date;
 }
 
-export default ({ makeId, checkEmail, checkPassword }: IUserDependencies) => {
+export default ({
+  makeId,
+  validateEmail,
+  validatePassword,
+}: IUserDependencies) => {
   if (
     typeof makeId !== "function" ||
-    typeof checkEmail !== "function" ||
-    typeof checkPassword !== "function"
+    typeof validateEmail !== "function" ||
+    typeof validatePassword !== "function"
   ) {
     throw new Error("Invalid dependencies injected.");
   }
@@ -49,13 +53,13 @@ export default ({ makeId, checkEmail, checkPassword }: IUserDependencies) => {
       if (!email) {
         throw new Error("User must have an email");
       }
-      checkEmail(email);
+      validateEmail(email);
     }
     private static verifyPassword(password: string) {
       if (!password) {
         throw new Error("User must have a password");
       }
-      checkPassword(password);
+      validatePassword(password);
     }
 
     public static validateNames(first_name: string, last_name: string) {
