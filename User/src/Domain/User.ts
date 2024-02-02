@@ -5,7 +5,7 @@ interface IUserDependencies {
 }
 
 export interface IUserOptions {
-  id?: string | number;
+  id: string | number;
   first_name: string;
   last_name: string;
   email: string;
@@ -28,7 +28,7 @@ export default ({
   }
 
   return class Blog {
-    private id: string | number | undefined;
+    private id: string | number;
     private first_name: string;
     private last_name: string;
     private email: string;
@@ -41,11 +41,12 @@ export default ({
       Blog.verifyPassword(options.password);
       Blog.validateNames(options.first_name, options.last_name);
 
-      this.id = options.id ? options.id : "";
+      this.id = options.id;
       this.first_name = options.first_name;
       this.last_name = options.last_name;
       this.email = options.email;
       this.password = options.password;
+      this.dob = options.dob;
       this.createdAt = options.createdAt;
     }
 
@@ -66,6 +67,26 @@ export default ({
       if (!first_name || !last_name) {
         throw new Error("User must have a first and last name");
       }
+    }
+
+    public getId() {
+      return this.id;
+    }
+
+    public getFirstName() {
+      return this.first_name;
+    }
+
+    public getLastName() {
+      return this.last_name;
+    }
+
+    public getEmail() {
+      return this.email;
+    }
+
+    public getPassword() {
+      return this.password;
     }
 
     // You can add any additional methods or properties specific to the Blog class here
