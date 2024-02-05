@@ -22,14 +22,16 @@ export default class signIn implements IUseCase<SignInInput, SignInOutput> {
   constructor(private readonly _userRepository: IUserRepository) {}
 
   public async execute(input: SignInInput): Promise<SignInOutput> {
-    console.log("signIn:input: ", input);
     const user = await this._userRepository.findByEmail(input.email);
+
     if (!user) {
       throw new Error("User not found");
     }
+
     if (user.getPassword() !== input.password) {
       throw new Error("Invalid password");
     }
+
     return SignInOutput.from(user);
   }
 }
